@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: BDA
+spec:
+  selector:
+    app: BDA
+  ports:
+    - port: 8081
+      targetPort: 8081
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: BDA
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: BDA
+  template:
+    metadata:
+      labels:
+        app: BDA
+    spec:
+      containers:
+        - name: app
+          image: katemore/BDA:1.0.0
+          ports:
+            - containerPort: 8081
+          imagePullPolicy: Always

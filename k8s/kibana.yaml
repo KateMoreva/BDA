@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kibana-container
+spec:
+  serviceName: kibana-container
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana-container
+  template:
+    metadata:
+      labels:
+        app: kibana-container
+    spec:
+      containers:
+        - name: kibana-container
+          image: kibana:7.5.2
+          resources:
+            limits:
+              cpu: 1000m
+            requests:
+              cpu: 100m
+          ports:
+            - containerPort: 5601
+              name: rest
+              protocol: TCP
+            - containerPort: 5602
+              name: inter-node
+              protocol: TCP
+            env:
+              - name: ELASTICSEARCH_HOSTS
+                value: http://elastic-container:9200
+              - name: xpack.reporting.enabled
+                value: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana-container
+spec:
+  selector:
+    app: kibana-container
+  ports:
+    - port: 5601
+      targetPort: 5601
+  type: LoadBalancer
