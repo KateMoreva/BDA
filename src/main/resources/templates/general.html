@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/general.css}" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<head>
+    <meta charset="UTF-8">
+    <title>HH аналитика рынка IT вакансий</title>
+</head>
+<body>
+<!--<form name="test" class="simple" method="post">-->
+<!--    <p>Запрос данных</p>-->
+<!--    <p><b>Колонка:</b><br>-->
+<!--        <input type="text" class="column" size="40">-->
+<!--    </p>-->
+
+<!--    <p><b>Значение:</b><br>-->
+<!--        <input type="text" class="value" size="40">-->
+<!--    </p>-->
+<!--    -->
+<!--    <p>-->
+<!--        <input type="submit" class="clear2" value="Отправить">-->
+<!--    </p>-->
+<!--</form>-->
+
+<form name="test" class="complex"  th:action="@{/search/foo}" th:object="${queryRequest}" method="post" >
+    <p>Сложный запрос данных</p>
+    <p><b>Запрос:</b><br>
+        <input type="text" id="query" name="query" size="40">
+    </p>
+    <button type="submit">Отправить</button>
+</form>
+
+</body>
+</html>

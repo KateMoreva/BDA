@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/general.css}" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<head>
+    <meta charset="UTF-8">
+    <title>HH аналитика рынка IT вакансий</title>
+</head>
+<body>
+<tr th:each="hit : ${hHDataResords.hits}">
+    <td><span>Запись :</span></td>
+    <br>
+    <td><span>Id :</span><span th:text="${hit._source.reviewId}"></span></td>
+    <br>
+    <td><span>Город :</span><span th:text="${hit._source.city}"></span></td>
+    <br>
+    <td><span>Должность :</span><span th:text="${hit._source.position}"> </span></td>
+    <br>
+    <td><span>Плюсы :</span><span th:text="${hit._source.positive}"> </span></td>
+    <br>
+    <td><span>Минусы :</span><span th:text="${hit._source.negative}"> </span></td>
+    <br>
+    <td><span>Оценка ЗП :</span><span th:text="${hit._source.salaryRating}"> </span></td>
+    <br>
+    <td><span>Оценка команды :</span><span th:text="${hit._source.teamRating}"> </span></td>
+    <br>
+    <td><span>Оценка руководства :</span><span th:text="${hit._source.managementRating}"> </span></td>
+    <br>
+    <td><span>Оценка карьеры :</span><span th:text="${hit._source.careerRating}"> </span></td>
+    <br>
+    <td><span>Оценка места :</span><span th:text="${hit._source.workplaceRating}"> </span></td>
+    <br>
+    <td><span>Оценка досуга :</span><span th:text="${hit._source.restRecoveryRating}"> </span></td>
+    <br>
+    <td><span>Target :</span><span th:text="${hit._source.target}"> </span></td>
+    <br>
+    <br>
+    <td></td>
+</tr>
+</body>
+</html>
