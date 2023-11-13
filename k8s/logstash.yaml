@@ -10,47 +10,36 @@ data:
   logstash.yml: |
     http.host: "0.0.0.0"
     path.config: /usr/share/logstash/pipeline
-  pipeline.conf: "input {
-  tcp {
-    port => \"5046\"
-                   }
-  file {
-  path => \"/usr/share/data/HeadHunter_train.csv\"
-  start_position => \"beginning\"
-  sincedb_path => \"/dev/null\"
-  }
-}
+  pipeline.conf: |
+    input {
+      tcp {
+        port => "5046"
+      }
+      file {
+        path => "/usr/share/data/HeadHunter_train.csv"
+        start_position => "beginning"
+        sincedb_path => "/dev/null"
+      }
+    }
 
-  filter {
-  csv {
-  columns => [
-  \"review_id\",
-  \"city\",
-  \"position\",
-  \"positive\",
-  \"negative\",
-  \"salary_rating\",
-  \"team_rating\",
-  \"managment_rating\",
-  \"career_rating\",
-  \"workplace_rating\",
-  \"rest_recovery_rating\",
-  \"target\" ]
-  separator => \",\"
-  skip_header => true
-  }
-}
+    filter {
+      csv {
+        columns => ["review_id","city","position","positive","negative","salary_rating","team_rating","managment_rating","career_rating","workplace_rating","rest_recovery_rating","target"]
+        separator => ","
+        skip_header => true
+      }
+    }
 
-  output {
-  stdout {
+    output {
+      stdout {
 
-}
-  elasticsearch {
-  action => \"index\"
-  hosts => \"elastic-container:9200\"
-  index => \"train\"
-  }
-}"
+      }
+      elasticsearch {
+        action => "index"
+        hosts => "elastic-container:9200"
+        index => "train"
+      }
+    }
 ---
 apiVersion: apps/v1
 kind: Deployment
