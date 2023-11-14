@@ -3,7 +3,7 @@ metadata:
   name: els-j
   version: 1.2.1
   attributes:
-    alpha.dockerimage-port: 8080
+    alpha.dockerimage-port: 8081
   displayName: Spring Boot®
   description: Spring Boot® using Gradle
   icon: https://raw.githubusercontent.com/devfile-samples/devfile-stack-icons/main/spring.svg
