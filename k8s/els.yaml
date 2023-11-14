@@ -12,6 +12,13 @@ spec:
       labels:
         app: elastic-container
     spec:
+      initContainers:
+        - name: busybox
+          image: busybox:1.28
+          command: [ 'sh', '-c', "chown -R 1000:1000 /usr/share/elasticsearch/data" ]
+          volumeMounts:
+            - name: data
+              mountPath: /usr/share/elasticsearch/data
       containers:
         - name: elastic-container
           image: elasticsearch:7.9.0
