@@ -25,13 +25,6 @@ components:
         uri: Dockerfile
         buildContext: .
         rootRequired: false
-  - name: demo
-    kubernetes:
-      uri: k8s/demo.yaml
-      endpoints:
-        - name: http-8081
-          targetPort: 8081
-          path: /
   - name: els
     kubernetes:
       uri: k8s/els.yaml
@@ -39,9 +32,6 @@ commands:
   - id: build-image
     apply:
       component: image
-  - id: deploy-demo
-    apply:
-      component: demo
   - id: deploy-els
     apply:
       component: els
@@ -49,7 +39,6 @@ commands:
     composite:
       commands:
         - build-image
-        - deploy-demo
         - deploy-els
       group:
         kind: deploy
