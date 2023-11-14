@@ -18,16 +18,27 @@ parent:
   id: java-springboot
   registryUrl: 'https://registry.devfile.io'
 components:
+  - name: image
+    image:
+      imageName: kmore23/poly_cloud_curse:latest
+      dockerfile:
+        uri: Dockerfile
+        buildContext: .
+        rootRequired: false
   - name: els
     kubernetes:
       uri: k8s/els.yaml
 commands:
+  - id: build-image
+    apply:
+      component: image
   - id: deploy-els
     apply:
       component: els
   - id: deploy
     composite:
       commands:
+        - build-image
         - deploy-els
       group:
         kind: deploy
