@@ -12,10 +12,9 @@ spec:
       labels:
         app: elastic-container
     spec:
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
+      config:
+        node.roles: [ "master", "data" ]
+        node.store.allow_mmap: false
       containers:
         - name: elastic-container
           image: elasticsearch:7.9.0
