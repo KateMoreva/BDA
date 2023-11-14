@@ -1,6 +1,6 @@
 schemaVersion: 2.2.0
 metadata:
-  name: els
+  name: els-j
   version: 1.2.1
   attributes:
     alpha.dockerimage-port: 8080
@@ -20,11 +20,18 @@ parent:
 components:
   - name: image
     image:
-      imageName: kmore23/poly_cloud_curse
+      imageName: kmore23/poly_cloud_curse:latest
       dockerfile:
         uri: Dockerfile
         buildContext: .
         rootRequired: false
+  - name: demo
+    kubernetes:
+      uri: k8s/demo.yaml
+      endpoints:
+        - name: http-8080
+          targetPort: 8080
+          path: /
   - name: els
     kubernetes:
       uri: k8s/els.yaml
@@ -32,6 +39,9 @@ commands:
   - id: build-image
     apply:
       component: image
+  - id: deploy-demo
+    apply:
+      component: demo
   - id: deploy-els
     apply:
       component: els
@@ -39,6 +49,7 @@ commands:
     composite:
       commands:
         - build-image
+        - deploy-demo
         - deploy-els
       group:
         kind: deploy
