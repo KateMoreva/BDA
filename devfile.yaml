@@ -1,0 +1,34 @@
+schemaVersion: 2.2.0
+metadata:
+  name: els
+  version: 1.2.1
+  attributes:
+    alpha.dockerimage-port: 8080
+  displayName: Spring Boot®
+  description: Spring Boot® using Gradle
+  icon: https://raw.githubusercontent.com/devfile-samples/devfile-stack-icons/main/spring.svg
+  tags:
+    - Java
+    - Spring
+  projectType: springboot
+  language: Java
+  provider: Red Hat
+  supportUrl: https://github.com/devfile-samples/devfile-support#support-information
+parent:
+  id: java-springboot
+  registryUrl: 'https://registry.devfile.io'
+components:
+  - name: els
+    kubernetes:
+      uri: k8s/els.yaml
+commands:
+  - id: deploy-els
+    apply:
+      component: els
+  - id: deploy
+    composite:
+      commands:
+        - deploy-els
+      group:
+        kind: deploy
+        isDefault: true
