@@ -92,7 +92,6 @@ spec:
           persistentVolumeClaim:
             claimName: elasticsearch-pv-claim
 ---
-# Elasticsearch PV Claim
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -102,7 +101,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 1Gi
 ---
 kind: Service
 apiVersion: v1
