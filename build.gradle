@@ -65,7 +65,7 @@ application {
 docker {
     springBootApplication {
         baseImage = 'openjdk:17-slim'
-        ports = [9090, 8080]
+        ports = [9090, 8081]
         images = ['awesome-spring-boot:1.115', 'awesome-spring-boot:latest']
         jvmArgs = ['-Dspring.profiles.active=production', '-Xmx2048m']
     }

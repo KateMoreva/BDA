@@ -6,8 +6,8 @@ spec:
   selector:
     app: bda
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8081
+      targetPort: 8081
   type: LoadBalancer
 ---
 apiVersion: apps/v1
@@ -28,5 +28,5 @@ spec:
         - name: app
           image: kmore23/poly_cloud_curse:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
           imagePullPolicy: Always
