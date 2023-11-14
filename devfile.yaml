@@ -20,7 +20,7 @@ parent:
 components:
   - name: image
     image:
-      imageName: kmore23/poly_cloud_curse:latest
+      imageName: kmore23/poly_cloud_curse
       dockerfile:
         uri: Dockerfile
         buildContext: .
