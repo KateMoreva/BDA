@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: elastic-container
-          image: elasticsearch:7.9.0
+          image: elasticsearch:7.17.14
           resources:
             limits:
               cpu: 1000m
@@ -42,7 +42,6 @@ spec:
           persistentVolumeClaim:
             claimName: elasticsearch-pv-claim
 ---
- Elasticsearch PV Claim
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -52,7 +51,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
