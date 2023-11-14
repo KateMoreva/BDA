@@ -90,7 +90,7 @@ spec:
                 path: logstash.conf
         - name: data
           persistentVolumeClaim:
-            claimName: elasticsearch-pv-claim
+            claimName: logstash-pv-claim
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
