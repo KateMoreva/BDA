@@ -1,6 +1,7 @@
+
 schemaVersion: 2.2.0
 metadata:
-  name: els-j
+  name: bda
   version: 1.2.1
   attributes:
     alpha.dockerimage-port: 8081
@@ -25,21 +26,25 @@ components:
         uri: Dockerfile
         buildContext: .
         rootRequired: false
-  - name: els
+  - name: bda
     kubernetes:
-      uri: k8s/els.yaml
+      uri: k8s/demo.yaml
+      endpoints:
+        - name: http-8081
+          targetPort: 8081
+          path: /
 commands:
   - id: build-image
     apply:
       component: image
-  - id: deploy-els
+  - id: deploy-bda
     apply:
-      component: els
+      component: bda
   - id: deploy
     composite:
       commands:
         - build-image
-        - deploy-els
+        - deploy-bda
       group:
         kind: deploy
         isDefault: true
