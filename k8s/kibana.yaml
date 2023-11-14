@@ -1,9 +1,8 @@
-apiVersion: v1
-kind: StatefulSet
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: kibana-container
 spec:
-  serviceName: kibana-container
   replicas: 1
   selector:
     matchLabels:
@@ -27,9 +26,9 @@ spec:
               protocol: TCP
           env:
             - name: ELASTICSEARCH_HOSTS
-              value: http://elastic-container:9200
+              value: "http://elastic-container:9200"
             - name: xpack.reporting.enabled
-              value: true
+              value: "true"
 ---
 apiVersion: v1
 kind: Service

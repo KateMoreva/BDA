@@ -46,7 +46,8 @@ public class ESearchController {
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:9200/train/_search?q=" + query))
+                    .uri(URI.create("http://elastic-container:9200/train/_search?q=" + query))
+                    .GET()
                     .header("accept", "application/json")
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

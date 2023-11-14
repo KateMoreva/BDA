@@ -1,9 +1,8 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: elastic-container
 spec:
-  serviceName: elastic-container
   replicas: 1
   selector:
     matchLabels:
@@ -33,11 +32,27 @@ spec:
               mountPath: /usr/share/elasticsearch/data
           env:
             - name: cluster.name
-              value: elastic-cluster
+              value: "elastic-cluster"
             - name: xpack.security.enabled
-              value: false
+              value: "false"
             - name: discovery.type
-              value: single-node
+              value: "single-node"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: elasticsearch-pv-claim
+---
+# Elasticsearch PV Claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: elasticsearch-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
 ---
 apiVersion: v1
 kind: Service
